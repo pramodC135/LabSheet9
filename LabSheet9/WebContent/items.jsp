@@ -3,30 +3,41 @@
     pageEncoding="ISO-8859-1"%>
     
 <%
-	//Insert item----------------------------------
+	//Save item----------------------------------
 	if (request.getParameter("itemCode") != null)
 	{
-		Item itemObj = new Item();
-			String stsMsg = itemObj.insertItem(request.getParameter("itemCode"),
-					request.getParameter("itemName"),
-					request.getParameter("itemPrice"),
-					request.getParameter("itemDesc"));
+			Item itemObj = new Item();
+			String stsMsg = "";
 			
-		session.setAttribute("statusMsg", stsMsg);
-		//itemObj.connect(); //For testing the connect method
-		//session.setAttribute("itemCome", request.getParameter("itemCome"));
-		//session.setAttribute("itemName", request.getParameter("itemName"));
-		//session.setAttribute("itemPrice", request.getParameter("itemPrice"));
-		//session.setAttribute("itemDesc", request.getParameter("itemDesc"));
-		}
+			//Insert----------------------------
+			if (request.getParameter("hidItemIDSave") == "")
+			{
+				 stsMsg = itemObj.insertItem(request.getParameter("itemCode"),
+									request.getParameter("itemName"),
+									request.getParameter("itemPrice"),
+									request.getParameter("itemDesc"));
+				
+			}
+			else //Update-------------------------------
+			{
+				stsMsg = itemObj.updateItem(request.getParameter("hidItemIDSave"),
+							request.getParameter("itemCode"),
+							request.getParameter("itemName"),
+							request.getParameter("itemPrice"),
+							request.getParameter("itemDesc"));
+			}
+			
+			session.setAttribute("statusMsg", stsMsg);
+		
+	}
 	
 	//Remove Item-------------------------------------
-	if(request.getParameter("itemID") !=null)
+	if(request.getParameter("hidItemIDDelete") !=null)
 	{
-		Item itemObj = new Item();
-		String stsMsg = itemObj.deleteItem(request.getParameter("itemID"));
-		session.setAttribute("statusMsg", stsMsg);
-		
+			Item itemObj = new Item();
+			String stsMsg = itemObj.deleteItem(request.getParameter("hidItemIDDelete"));
+			session.setAttribute("statusMsg", stsMsg);
+			
 	}
 	
 	//
@@ -53,12 +64,12 @@
 								
 								<h1>Items Management</h1>
 								<form id="formItem" name="formItem" method="post" action="items.jsp">
-									Item code: <input name="itemCode" type="text" class="form-control form-control-sm"><br>
-									Item name: <input name="itemName" type="text" class="form-control form-control-sm"><br>
-									Item price: <input name="itemPrice" type="text" class="form-control form-control-sm"><br>
-									Item Description: <input name="itemDesc" type="text" class="form-control form-control-sm">
+									Item code: <input name="itemCode" id="itemCode" type="text" class="form-control form-control-sm"><br>
+									Item name: <input name="itemName" id="itemName" type="text" class="form-control form-control-sm"><br>
+									Item price: <input name="itemPrice" id="itemPrice" type="text" class="form-control form-control-sm"><br>
+									Item Description: <input name="itemDesc" id="itemDesc" type="text" class="form-control form-control-sm">
 									<br>
-									<input name="btnSubmit" type="submit" value="Save" class="btn btn-primary">
+									<input name="btnSubmit" id="btnSubmit" type="submit" value="Save" class="btn btn-primary">
 									<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 								</form>
 								

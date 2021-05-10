@@ -99,18 +99,18 @@ public class Item {
 				String itemDesc = rs.getString("itemDesc");
 				
 				// Add a row into the html table
-				output += "<tr><td>" + itemCode + "</td>";
+				output += "<tr><td><input id='hidItemIDUpdate' type='hidden' value='" + itemID + "'>"
+							+ itemCode + "</td>";
 				output += "<td>" + itemName + "</td>";
 				output += "<td>" + itemPrice + "</td>";
 				output += "<td>" + itemDesc + "</td>";
 				
 				// Buttons
-				output += "<td><input name='btnUpdate' "
-						+ "type='button' value='Update' class='btn btn-secondary'></td>"
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
 						+ "<td><form method='post' action='items.jsp'>"
 						+"<input name=''btnRemove' "
 						+ "type='submit' value='Remove' class='btn btn-danger'>"
-						+"<input name='itemID' type= 'hidden' "
+						+"<input name='hidItemIDDelete' type= 'hidden' "
 						+ "value='" + itemID +"'>" + "</form></td></tr>";
 			}
 			
