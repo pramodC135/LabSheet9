@@ -51,7 +51,7 @@
 
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.2.1.min.js"></script>
-<script src="Components/main.js"></script>
+<script src="Components/items.js"></script>
 
 
 <title>Items Management</title>
