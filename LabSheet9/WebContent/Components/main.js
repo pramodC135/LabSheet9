@@ -2,7 +2,10 @@
 //page load
 $(document).ready(function()
 {
-	$("#alertSuccess").hide();
+	if ($("#alertSuccess").text().trim() == "")
+	{
+		$("#alertSuccess").hide();
+	}
 	$("#alertError").hide();
 });
 
