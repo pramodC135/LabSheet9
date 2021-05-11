@@ -69,6 +69,8 @@
 									Item price: <input name="itemPrice" id="itemPrice" type="text" class="form-control form-control-sm"><br>
 									Item Description: <input name="itemDesc" id="itemDesc" type="text" class="form-control form-control-sm">
 									<br>
+									<div id="alertSuccess" class="alert alert-success"></div>
+									<div id="alertError" class="alert alert-danger"></div>
 									<input name="btnSubmit" id="btnSubmit" type="submit" value="Save" class="btn btn-primary">
 									<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 								</form>
@@ -77,7 +79,7 @@
 										<%
 											out.print(session.getAttribute("statusMsg"));
 										%>
-								</div>
+								</div> 
 								
 								<br>
 								
