@@ -1,7 +1,6 @@
-
 //page load
 $(document).ready(function()
-{
+{	
 	if ($("#alertSuccess").text().trim() == "")
 	{
 		$("#alertSuccess").hide();
@@ -10,7 +9,8 @@ $(document).ready(function()
 });
 
 //Save button
-$(document).on("click", "#btnSave", function(event){
+$(document).on("click", "#btnSave", function(event)
+{
 
 	//clear status msges--------------
 	$("#alertSuccess").text("");
@@ -30,17 +30,17 @@ $(document).on("click", "#btnSave", function(event){
 	}
 
 	// IF valid
-	var student = getStudentCard($("#txtName").val().trim(),
-						$('input[name="rdoGender"]:checked').val(),
-						$("#ddlYear").val());
-								
-	$("#colStudents").append(student);
+	$("#formItem").submit();
 
-	$("#alertSuccess").text("Saved Successfully.");
-	$("#alertSuccess").show();
+});
 
-	$("#formStudent")[0].reset();
-
+$(document).on("click", "#btnUpdate", function(event)
+{
+	$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());
+	$("#itemCode").val($(this).closest("tr").find('td:eq(0)').text());
+	$("#itemName").val($(this).closest("tr").find('td:eq(1)').text());
+	$("#itemPrice").val($(this).closest("tr").find('td:eq(2)').text());
+	$("#itemDesc").val($(this).closest("tr").find('td:eq(3)').text());
 });
 
 function validateItemForm()
@@ -108,12 +108,3 @@ function getStudentCard(name, gender, year)
 	
 	return student;
 }
-
-//Remove buttom handler
-$(document).on("click", ".remove", function(event){
-
-	$(this).closest(".student").remove();
-	
-	$("#alertSuccess").text("Removed Successfully.");
-	$("#alertSuccess").show();
-});
